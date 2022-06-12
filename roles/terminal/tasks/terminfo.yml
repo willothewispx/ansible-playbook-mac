@@ -6,9 +6,10 @@
     - never
     - terminfo
 
-- name: Dispaly ncurses path
-  debug:
-    var: output.stdout
+- name: Fail
+  fail:
+    msg: Wrong ncurses version
+  when: output.stdout != terminal_ncurses_path
   tags:
     - never
     - terminfo
@@ -25,14 +26,12 @@
   shell: cd /tmp &&
     curl -LO {{ terminal_terminfo_url }} &&
     gunzip terminfo.src.gz
-  when: output.stdout == terminal_ncurses_path
   tags:
     - never
     - terminfo
 
 - name: Compile terminfo
   shell: cd /tmp && {{ terminal_ncurses_path }} -xe alacritty-direct,tmux-256color terminfo.src 
-  when: output.stdout == terminal_ncurses_path
   tags:
     - never
     - terminfo

@@ -1,4 +1,4 @@
 ---
-  terminal_ncurses_path: "/usr/bin/tic"
+  terminal_ncurses_path: /usr/bin/tic
 
   terminal_terminfo_url: https://invisible-island.net/datafiles/current/terminfo.src.gz
