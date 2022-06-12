@@ -1,0 +1,38 @@
+---
+- name: Register ncurses path
+  shell: which tic
+  register: output
+  tags:
+    - never
+    - terminfo
+
+- name: Dispaly ncurses path
+  debug:
+    var: output.stdout
+  tags:
+    - never
+    - terminfo
+
+- name: Clear terminfo.src from /tmp
+  file:
+    path: "/tmp/terminfo.src"
+    state: absent
+  tags:
+    - never
+    - terminfo
+
+- name: Download and unzip tmux-256color terminfo
+  shell: cd /tmp &&
+    curl -LO {{ terminal_terminfo_url }} &&
+    gunzip terminfo.src.gz
+  when: output.stdout == terminal_ncurses_path
+  tags:
+    - never
+    - terminfo
+
+- name: Compile terminfo
+  shell: cd /tmp && {{ terminal_ncurses_path }} -xe alacritty-direct,tmux-256color terminfo.src 
+  when: output.stdout == terminal_ncurses_path
+  tags:
+    - never
+    - terminfo
