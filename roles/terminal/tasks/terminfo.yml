@@ -16,7 +16,7 @@
 
 - name: Clear terminfo.src from /tmp
   file:
-    path: "/tmp/terminfo.src"
+    path: /tmp/terminfo.src
     state: absent
   tags:
     - never
