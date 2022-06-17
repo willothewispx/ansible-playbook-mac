@@ -1,0 +1,17 @@
+---
+homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
+homebrew_bin_path: "{{ homebrew_prefix }}/bin"
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/bundle
+
+homebrew_use_brewfile: true
+homebrew_brewfile_dir: '~'
+
+homebrew_clear_cache: false
+
+homebrew_upgrade_all_packages: false
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_accept_external_apps: false
