@@ -1,2 +1,2 @@
 ---
-- include: terminfo.yml
+- include_tasks: terminfo.yml
